@@ -1,0 +1,15 @@
+#!/bin/bash
+# Display documentation for create-ai-project script
+
+DOC_FILE="/home/timothee/Training/DOCUMENTATION.md"
+
+if command -v less &> /dev/null; then
+    # Use less if available (better for long files)
+    less "$DOC_FILE"
+elif command -v more &> /dev/null; then
+    # Fallback to more
+    more "$DOC_FILE"
+else
+    # Last resort: cat
+    cat "$DOC_FILE"
+fi
