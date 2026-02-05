@@ -545,7 +545,7 @@ MODEL_TYPE=gpt
 def init_git_repo(project_path, project_name):
     """Initialize a local Git repository"""
     print("\n[*] Initializing Git repository...")
-    success, _, _ = run_command("git init", cwd=project_path)
+    success, _, _ = run_command("git init -b main", cwd=project_path)
     if success:
         print("[+] Git repository initialized")
         run_command("git config user.email 'you@example.com'", cwd=project_path)
@@ -636,13 +636,7 @@ def push_to_github(project_path):
             print("[+] Code pushed to GitHub")
             return True
         else:
-            print("[!] Error during push (trying master branch...)")
-            # Try with master
-            success, _, _ = run_command("git branch -M main", cwd=project_path)
-            success, _, _ = run_command("git push -u origin main", cwd=project_path)
-            if success:
-                print("[+] Code pushed to GitHub (main branch)")
-                return True
+            print("[-] Error during push to GitHub")
     else:
         print("[!] No remote configured")
     

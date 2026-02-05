@@ -1,42 +1,42 @@
 # Generative AI Project Creator - Documentation
 
-Guide complet pour utiliser le script `create-ai-project`.
+Complete guide to using the `create-ai-project` script.
 
-## 📋 Table des matières
+## 📋 Table of Contents
 
 - [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Gestion des projets](#gestion-des-projets)
-- [Dépendances](#dépendances)
+- [Usage](#usage)
+- [Project Management](#project-management)
+- [Dependencies](#dependencies)
 - [GitHub Integration](#github-integration)
-- [Dépannage](#dépannage)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Installation
 
-### Prérequis
+### Prerequisites
 
 - Python 3.8+
 - Git
 - GitHub CLI (`gh`)
 - uv (package manager)
 
-### Installation de uv
+### Install uv
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### Installation du script
+### Install the script
 
-Le script est déjà installé comme commande globale:
+The script is already installed as a global command:
 
 ```bash
 create-ai-project
 ```
 
-Pour vérifier:
+To verify:
 
 ```bash
 which create-ai-project
@@ -44,22 +44,22 @@ which create-ai-project
 
 ---
 
-## Utilisation
+## Usage
 
-### Créer un nouveau projet
+### Create a new project
 
 ```bash
 create-ai-project
 ```
 
-Puis suivez les instructions:
+Then follow the instructions:
 
-1. Entrez un nom de projet (lettres, chiffres, - et _)
-2. Le script crée la structure complète
-3. Un commit initial est créé automatiquement
-4. GitHub push (optionnel, si authentifié)
+1. Enter a project name (letters, numbers, - and _)
+2. The script creates the complete structure
+3. An initial commit is created automatically
+4. GitHub push (optional, if authenticated)
 
-### Exemple
+### Example
 
 ```bash
 $ create-ai-project
@@ -73,79 +73,89 @@ $ create-ai-project
 
 [+] Created: config
 [+] Created: src/core
-... (création des fichiers)
+... (creating files)
 
 [+] Initial commit created successfully
 [+] GitHub repository created
 ```
 
+### Update an existing project with --force flag
+
+To overwrite an existing project with the latest template:
+
+```bash
+create-ai-project --force
+```
+
+The `--force` flag will automatically overwrite all files without asking for confirmation.
+
 ---
 
-## Gestion des projets
+## Project Management
 
-### Installer les dépendances
+### Install dependencies
 
-Après avoir créé un projet:
+After creating a project:
 
 ```bash
 cd my-ai-app
 uv sync
 ```
 
-Ou manuellement:
+Or manually:
 
 ```bash
 uv pip install -r requirements.txt
 ```
 
-### Lancer le projet
+### Run the project
 
 ```bash
 cd my-ai-app
 uv run main.py
 ```
 
-### Ajouter des dépendances
+### Add dependencies
 
 ```bash
 cd my-ai-app
 uv pip install <package_name>
 ```
 
-### Supprimer un projet
+### Delete a project
 
-#### Supprimer le dossier local
+#### Delete the local folder
 
 ```bash
 rm -rf ~/path/to/my-ai-app
 ```
 
-#### Supprimer du GitHub aussi
+#### Delete from GitHub as well
 
 ```bash
 gh repo delete TimotheeNkwar/my-ai-app --yes
 ```
 
-Ou via GitHub.com:
+Or via GitHub.com:
 
-1. Allez sur <https://github.com/TimotheeNkwar/my-ai-app>
+1. Go to <https://github.com/TimotheeNkwar/my-ai-app>
 2. Settings → Danger Zone → Delete this repository
 
 ---
 
-## Dépendances
+## Dependencies
 
-### Dépendances principales
+### Main Dependencies
 
 ```
-python-dotenv==1.0.0    # Configuration d'environnement
-pyyaml==6.0              # Fichiers YAML
-openai==1.0.0            # API OpenAI
-anthropic==0.7.0         # API Anthropic Claude
+python-dotenv==1.0.0    # Environment configuration
+pyyaml==6.0              # YAML files
+openai==1.0.0            # OpenAI API
+anthropic==0.7.0         # Anthropic Claude API
 requests==2.31.0         # HTTP requests
 ```
 
-### Dépendances de développement
+### Development Dependencies
 
 ```
 pytest>=7.0              # Testing
@@ -153,23 +163,23 @@ black>=23.0              # Code formatting
 ruff>=0.1.0              # Linting
 ```
 
-### Mettre à jour les dépendances
+### Update dependencies
 
-Vérifier les mises à jour:
+Check for updates:
 
 ```bash
 cd my-ai-app
 uv pip list --outdated
 ```
 
-Mettre à jour tout:
+Update everything:
 
 ```bash
 uv pip install --upgrade pip
 uv pip install -U -r requirements.txt
 ```
 
-Ou spécifiquement:
+Or specifically:
 
 ```bash
 uv pip install --upgrade openai
@@ -179,37 +189,37 @@ uv pip install --upgrade openai
 
 ## GitHub Integration
 
-### Authentification
+### Authentication
 
-Si le script dit que vous n'êtes pas authentifié:
+If the script says you are not authenticated:
 
 ```bash
 gh auth login
 ```
 
-Sélectionnez:
+Select:
 
 - `GitHub.com`
-- `SSH` (recommandé)
+- `SSH` (recommended)
 - `Login with a web browser`
-- Copiez le code et authentifiez-vous
+- Copy the code and authenticate
 
-Vérifiez l'authentification:
+Verify authentication:
 
 ```bash
 gh auth status
 ```
 
-### Pousser un projet existant sur GitHub
+### Push an existing project to GitHub
 
-Si votre projet n'a pas été pushé:
+If your project has not been pushed:
 
 ```bash
 cd my-ai-app
 gh repo create my-ai-app --public --source=. --remote=origin --push
 ```
 
-### Cloner un projet depuis GitHub
+### Clone a project from GitHub
 
 ```bash
 gh repo clone TimotheeNkwar/my-ai-app
@@ -219,15 +229,15 @@ uv sync
 
 ---
 
-## Structure du projet créé
+## Project Structure
 
 ```
 my-ai-app/
 ├── config/                      # Configuration files
-│   ├── model_config.yaml       # Modèles et paramètres
+│   ├── model_config.yaml       # Models and parameters
 │   └── logging_config.yaml     # Logging configuration
 │
-├── src/                        # Code source
+├── src/                        # Source code
 │   ├── core/                   # LLM clients
 │   │   ├── base_llm.py
 │   │   ├── gpt_client.py
@@ -275,15 +285,15 @@ my-ai-app/
 
 ## Configuration
 
-### Variables d'environnement
+### Environment variables
 
-Créez un fichier `.env`:
+Create a `.env` file:
 
 ```bash
 cp .env.example .env
 ```
 
-Éditez avec vos clés:
+Edit with your keys:
 
 ```
 OPENAI_API_KEY=sk-...
@@ -292,9 +302,9 @@ LOG_LEVEL=INFO
 MODEL_TYPE=gpt
 ```
 
-### Configuration des modèles
+### Model configuration
 
-Éditez `config/model_config.yaml`:
+Edit `config/model_config.yaml`:
 
 ```yaml
 models:
@@ -306,79 +316,79 @@ models:
 
 ---
 
-## Dépannage
+## Troubleshooting
 
-### Problème: "command not found: create-ai-project"
+### Issue: "command not found: create-ai-project"
 
-Vérifiez le lien symbolique:
+Check the symbolic link:
 
 ```bash
 ls -la /usr/local/bin/create-ai-project
 ```
 
-Si manquant, le recréer:
+If missing, recreate it:
 
 ```bash
-sudo ln -s /home/timothee/Training/create_project.py /usr/local/bin/create-ai-project
+sudo ln -sf /home/timothee/fullject/create_project.py /usr/local/bin/create-ai-project
 ```
 
-### Problème: GitHub authentication fails
+### Issue: GitHub authentication fails
 
-Vérifiez votre authentification:
+Check your authentication:
 
 ```bash
 gh auth status
 ```
 
-Authentifiez-vous:
+Authenticate:
 
 ```bash
 gh auth login
 ```
 
-### Problème: uv not found
+### Issue: uv not found
 
-Installez uv:
+Install uv:
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Ajoutez au PATH si nécessaire:
+Add to PATH if necessary:
 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-### Problème: Python version mismatch
+### Issue: Python version mismatch
 
-Vérifiez votre version Python:
+Check your Python version:
 
 ```bash
 python3 --version
 ```
 
-Le projet requiert Python 3.8+. Si vous avez une version plus ancienne, installez une version plus récente.
+This project requires Python 3.8+. If you have an older version, install a newer one.
 
 ---
 
-## Commandes rapides
+## Quick Commands
 
 ```bash
-# Créer un projet
+# Create a project
 create-ai-project
 
-# Accéder à la documentation
-docs
+# Create with force overwrite
+create-ai-project --force
 
-# Gérer les dépendances
+# Manage dependencies
 cd my-project
-uv sync                    # Installer
-uv pip list               # Lister
-uv pip install pkg        # Ajouter
-uv pip install -U pkg     # Mettre à jour
+uv sync                    # Install
+uv pip list               # List
+uv pip install pkg        # Add
+uv pip install -U pkg     # Update
 
-# Lancer
+# Run
 uv run main.py
 
 # Git
@@ -396,7 +406,7 @@ gh repo delete user/repo
 
 ## Support
 
-Pour plus d'informations:
+For more information:
 
 - [uv Documentation](https://docs.astral.sh/uv/)
 - [GitHub CLI](https://cli.github.com/)
@@ -404,4 +414,4 @@ Pour plus d'informations:
 
 ---
 
-**Dernière mise à jour:** Février 2026
+**Last updated:** February 2026
